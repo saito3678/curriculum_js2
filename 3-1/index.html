@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- jQueryを動かすために必要な物がここに必要 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    <button class="click">クリック</button>
+    <script>
+        // ここにjQueryを記入
+        $('.click').on("click", function() {
+            var left = $(".left");
+            var right = $(".right");
+
+            // カーテンが閉じている場合は開く
+            if(left.width() === 0) {
+                left.animate({width : "50%"}, 2000);
+                right.animate({width : "50%"}, 2000);
+            } else { // そうでなければ閉じる
+                left.animate({width : 0}, 2000);
+                right.animate({width : 0}, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
