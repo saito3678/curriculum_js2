@@ -7,7 +7,7 @@ var app = new Vue({
         noComplete: "",
         total: "",
         search: "",
-        originalList: "",
+        originalList: [],
     },
     // watchでlistの変更を監視
     watch: {
@@ -36,7 +36,7 @@ var app = new Vue({
         search: {
             handler: function() {
                 if(this.search === "") {
-                    this.list = this.originalList;
+                    this.list = [...this.originalList];
                 } else {
                     this.list = this.list.filter(todo => todo.text.includes(this.search));
                 }
@@ -61,13 +61,12 @@ var app = new Vue({
     methods: {
         addToDo: function() {
             if (this.addText !== "") {
-                this.list.push({
+                var newToDo = {
                     text: this.addText,
                     isChecked: false,
-                }),
-                this.originalList.push({
-                    text: this.addText,
-                })
+                };
+                this.list.push(newToDo),
+                this.originalList.push({...newToDo});
             }
             this.addText = "";
         },
