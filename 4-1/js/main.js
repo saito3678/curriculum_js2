@@ -13,7 +13,7 @@ var app = new Vue({
     watch: {
         originalList: {
             handler: function() {
-                localStorage.setItem("original", JSON.stringify(this.list));
+                localStorage.setItem("original", JSON.stringify(this.originalList));
             }
         },
         list: {
@@ -74,7 +74,8 @@ var app = new Vue({
         deleteBtn: function() {
             this.list = this.list.filter(function(todo) {
                 return !todo.isChecked;
-            });
+            }),
+            this.originalList = [...this.list];
         }
     }
 });
